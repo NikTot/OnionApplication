@@ -9,14 +9,10 @@ namespace OA.Web.Models
         [HiddenInput]
         public long Id { get; set; }        
         
-        [Required(ErrorMessage = "Required error message defined on the model")]
+        [Required(ErrorMessage = "Не указано ФИО пользователя")]
         public string UserName { get; set; }
-
         public string PhoneNumber { get; set; }
-
         public string Email { get; set; }
-
-        [Display(Name = "City")]
         public string City { get; set; }
     }
 }

@@ -26,17 +26,20 @@ namespace OA.DAL
         public void Create(User user)
         {
             db.Users.Add(user);
+            db.SaveChanges();
         }
 
         public void Update(User user)
         {
             db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public void Delete(int id)
         {
             User user = db.Users.Find(id);
             if (user != null) db.Users.Remove(user);
+            db.SaveChanges();
         }
     }
 }
