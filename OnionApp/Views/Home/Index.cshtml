@@ -4,32 +4,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h4>Users</h4>
+<h4>Пользователь</h4>
 
 <form method="post" asp-action="Index" asp-controller="Home">
 
-<div asp-validation-summary="All" class="text-danger"></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
 
-<div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" asp-for="UserName" id="name" aria-describedby="nameHelp" placeholder="Enter name">
-    <small id="nameHelp" class="form-text text-muted">We'll never share your name ...</small>
-    <span asp-validation-for="UserName" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label for="phoneNumber">PhoneNumber</label>
-    <input type="number" class="form-control" id="phoneNumber" asp-for="PhoneNumber" placeholder="0">
-    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" class="form-control" asp-for="Email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email ...</small>
-    <span asp-validation-for="Email" class="text-danger"></span>
-</div>
-
-
-<button type="submit" class="btn btn-primary">Создать</button>
+    <div class="form-group">
+        <label for="name">ФИО</label>
+        <input type="text" class="form-control" asp-for="UserName" id="name" aria-describedby="nameHelp" placeholder="Enter name">
+        <small id="nameHelp" class="form-text text-muted">Введите ваше ФИО ...</small>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Номер телефона</label>
+        <input type="text" class="form-control" id="phoneNumber" asp-for="PhoneNumber" placeholder="">
+        <small id="emailHelp" class="form-text text-muted">Введите свой номер телефона в формате +7(999)9999999 ...</small>
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" asp-for="Email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">Введите свой email ...</small>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="city">Город</label>
+        <select class="form-control" asp-for="City" id="city" aria-describedby="cityHelp">
+            <option>Москва</option>
+            <option>Санкт-Петербург</option>
+            <option>Новосибирск</option>
+            <option>Казань</option>
+        </select>
+        <small id="emailHelp" class="form-text text-muted">Выбирете свой город ...</small>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Создать</button>
 </form>
 
 @section Scripts  {

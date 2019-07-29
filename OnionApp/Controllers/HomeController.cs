@@ -11,12 +11,10 @@ namespace OnionApp.Controllers
     public class HomeController : Controller
     {
         private readonly IUserService _userService;
-        //private readonly IMapper _mapper;
 
         public HomeController(IUserService userService)
         {
             _userService = userService;
-            //_mapper = mapper;
         }
         public IActionResult Index()
         {
