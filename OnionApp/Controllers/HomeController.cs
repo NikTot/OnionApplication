@@ -11,13 +11,11 @@ namespace OnionApp.Controllers
     public class HomeController : Controller
     {
         private readonly IUserService _userService;
-        private readonly ICityService _cityService;
         private readonly IMapper _mapper;
 
-        public HomeController(IUserService userService, ICityService cityService, IMapper mapper)
+        public HomeController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
-            _cityService = cityService;
             _mapper = mapper;
         }
         public IActionResult Index()
@@ -33,7 +31,7 @@ namespace OnionApp.Controllers
             {
                 return View(userViewModel);
             }
-            var user = _mapper.Map<UserViewModel, User>(userViewModel);
+            var user = _mapper.Map<User>(userViewModel);
             _userService.CreateUser(user);
             return Redirect("Home/Index");
         }

@@ -9,6 +9,5 @@ namespace OA.DAL
         {
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<City> Cities { get; set; }
     }
 }

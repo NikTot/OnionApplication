@@ -17,6 +17,6 @@ namespace OA.Web.Models
         public string Email { get; set; }
 
         [Display(Name = "City")]
-        public City City { get; set; }
+        public string City { get; set; }
     }
 }

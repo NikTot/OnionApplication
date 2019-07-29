@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace OA.Data
+﻿namespace OA.Data
 {
-    public class City
+    public enum City
     {
-        public int Id { get; set; }
-        public string CityName { get; set; }
-        public List<User> Users { get; set; }
+        Novosibisk,
+        Moscow,
+        Pskov
     }
 }
