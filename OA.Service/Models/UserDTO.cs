@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace OA.Web.Models
+namespace OA.Service.Models
 {
-    public class UserViewModel
+    public class UserDTO
     {
         [Required]
-        [HiddenInput]
         public long Id { get; set; }        
         
         [Required(ErrorMessage = "Не указано ФИО пользователя")]

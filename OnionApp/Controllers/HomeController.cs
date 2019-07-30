@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using OA.Service.Interfaces;
-using OA.Web.Models;
+using OA.Service.Models;
 using OnionApp.Models;
-using AutoMapper;
-using OA.Data;
 
 namespace OnionApp.Controllers
 {
@@ -23,14 +21,13 @@ namespace OnionApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Index(UserViewModel userViewModel)
+        public IActionResult Index(UserDTO user)
         {
             if (!ModelState.IsValid)
             {
-                return View(userViewModel);
-            }
+                return View(user);
+            }           
             
-            var user = Mapper.Map<UserViewModel, User>(userViewModel);
             _userService.CreateUser(user);
             return Redirect("Home/Index");
         }

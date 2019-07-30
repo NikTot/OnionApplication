@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OA.Data
+namespace OA.DAL
 {
     public class User
     {

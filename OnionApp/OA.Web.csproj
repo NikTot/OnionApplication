@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OA.DAL\OA.DAL.csproj" />
-    <ProjectReference Include="..\OA.Data\OA.Data.csproj" />
     <ProjectReference Include="..\OA.Service\OA.Service.csproj" />
   </ItemGroup>
 

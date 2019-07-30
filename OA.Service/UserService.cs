@@ -1,40 +1,52 @@
-﻿using OA.DAL;
-using OA.Data;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using OA.DAL;
 using OA.Service.Interfaces;
+using OA.Service.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OA.Service
 {
     public class UserService : IUserService
     {
-        private readonly IRepository<User> _userRepository;
+        private DBContext db;        
 
-        public UserService(IRepository<User> userRepository)
+        public UserService(DBContext context)
         {
-            _userRepository = userRepository;
+            db = context;
 
         }
-        public IEnumerable<User> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsers()
         {
-            return _userRepository.GetAll();
+            var users = await db.Users.ToListAsync();
+            return  Mapper.Map<IList<User>, IEnumerable<UserDTO>>(users); 
         }
 
-        public User GetUser(int id)
+        public async Task<UserDTO> GetUser(int id)
         {
-            return _userRepository.Get(id);
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
+            return Mapper.Map<User, UserDTO>(user);
         }
 
-        public void CreateUser(User user)
+        public void CreateUser(UserDTO entity)
         {
-            _userRepository.Create(user);
+            var user = Mapper.Map<UserDTO, User>(entity);
+            db.Users.Add(user);
+            db.SaveChanges();
         }
-        public void UpdateUser(User user)
+        public async void UpdateUser(UserDTO entity)
         {
-            _userRepository.Update(user);
+            var user = Mapper.Map<UserDTO, User>(entity);
+            var userDB = await db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);           
+            db.Entry(userDB).State = EntityState.Modified;
+            db.SaveChanges();
         }
         public void DeleteUser(int id)
-        {
-            _userRepository.Delete(id);
+        {            
+            User user = db.Users.Find(id);
+            if (user != null) db.Users.Remove(user);
+            db.SaveChanges();
         }
     }
 }

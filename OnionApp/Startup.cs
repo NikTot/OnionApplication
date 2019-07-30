@@ -7,10 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OA.DAL;
-using OA.Data;
 using OA.Service;
 using OA.Service.Interfaces;
-using OA.Web.Models;
+using OA.Service.Models;
 
 namespace OnionApp
 {
@@ -34,8 +33,7 @@ namespace OnionApp
             });            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped(typeof(IRepository<User>), typeof(UserRepository));
+            services.AddDbContext<DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));            
             services.AddTransient<IUserService, UserService>();
         }
 
@@ -56,7 +54,7 @@ namespace OnionApp
 
             Mapper.Initialize(config =>
             {
-                config.CreateMap<UserViewModel, User>().ReverseMap();
+                config.CreateMap<UserDTO, User>().ReverseMap();
             });
 
             app.UseHttpsRedirection();
