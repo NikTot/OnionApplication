@@ -28,7 +28,7 @@ namespace OnionApp.Controllers
                 return View(user);
             }           
             
-            _userService.CreateUser(user);
+            _userService.CreateUserAsync(user);
             return Redirect("Home/Index");
         }
 

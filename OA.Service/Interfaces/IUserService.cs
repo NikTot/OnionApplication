@@ -6,10 +6,10 @@ namespace OA.Service.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserDTO>> GetUsers();
-        Task<UserDTO> GetUser(int id);
-        void CreateUser(UserDTO user);
-        void UpdateUser(UserDTO user);
-        void DeleteUser(int id);
+        Task<IEnumerable<UserDTO>> GetUsersAsync();
+        Task<UserDTO> GetUserAsync(int id);
+        void CreateUserAsync(UserDTO user);
+        void UpdateUserAsync(UserDTO user);
+        void DeleteUserAsync(int id);
     }
 }

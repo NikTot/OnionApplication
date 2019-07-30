@@ -17,34 +17,35 @@ namespace OA.Service
             db = context;
 
         }
-        public async Task<IEnumerable<UserDTO>> GetUsers()
+        public async Task<IEnumerable<UserDTO>> GetUsersAsync()
         {
             var users = await db.Users.ToListAsync();
             return  Mapper.Map<IList<User>, IEnumerable<UserDTO>>(users); 
         }
 
-        public async Task<UserDTO> GetUser(int id)
+        public async Task<UserDTO> GetUserAsync(int id)
         {
             var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
             return Mapper.Map<User, UserDTO>(user);
         }
 
-        public void CreateUser(UserDTO entity)
+        public async void CreateUserAsync(UserDTO entity)
         {
             var user = Mapper.Map<UserDTO, User>(entity);
-            db.Users.Add(user);
+            //db.Users.Add(user);
+            await db.Users.AddAsync(user);
             db.SaveChanges();
         }
-        public async void UpdateUser(UserDTO entity)
+        public async void UpdateUserAsync(UserDTO entity)
         {
             var user = Mapper.Map<UserDTO, User>(entity);
             var userDB = await db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);           
             db.Entry(userDB).State = EntityState.Modified;
             db.SaveChanges();
         }
-        public void DeleteUser(int id)
-        {            
-            User user = db.Users.Find(id);
+        public async void DeleteUserAsync(int id)
+        {
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user != null) db.Users.Remove(user);
             db.SaveChanges();
         }
