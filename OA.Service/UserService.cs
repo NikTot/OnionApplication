@@ -31,15 +31,21 @@ namespace OA.Service
 
         public async void CreateUserAsync(UserDTO entity)
         {
-            var user = Mapper.Map<UserDTO, User>(entity);
-            //db.Users.Add(user);
+            var user = Mapper.Map<UserDTO, User>(entity);           
             await db.Users.AddAsync(user);
             db.SaveChanges();
         }
         public async void UpdateUserAsync(UserDTO entity)
         {
             var user = Mapper.Map<UserDTO, User>(entity);
-            var userDB = await db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);           
+            var userDB = await db.Users.FirstOrDefaultAsync(u => u.Id == user.Id);  
+            if (userDB != null)
+            {
+                userDB.UserName = user.UserName;
+                userDB.City = user.City;
+                userDB.Email = user.Email;
+                userDB.PhoneNumber = user.PhoneNumber;
+            }
             db.Entry(userDB).State = EntityState.Modified;
             db.SaveChanges();
         }
